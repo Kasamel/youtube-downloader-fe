@@ -1,1 +1,7 @@
-
+<ul class="list-group">
+    <div *ngFor="let track of trackList; let i = index">
+        <div> {{track.author}} - {{track.name}}</div>
+    </div>
+</ul>
+<button class="btn btn-primary">Download new</button>
+<button class="btn btn-info">Update list</button>
