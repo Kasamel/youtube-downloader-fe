@@ -1,0 +1,10 @@
+.custom-margin {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.custom-style {
+    border-radius: 25px;
+    background-color: rgb(222, 241, 248);
+    height: 48px;
+}

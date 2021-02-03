@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Track } from '../shared/track.model';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+
+import { DownloadModalComponent } from './download-modal/download-modal.component';
 
 @Component({
   selector: 'app-main',
@@ -11,23 +10,19 @@ import { catchError } from 'rxjs/operators';
 })
 export class MainComponent implements OnInit {
 
-  allTrackUrl = "http://localhost:8080/api/downloader/all";
-  trackList: Track[];
+  description = "FFFF";
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.getAllTracks().subscribe((tracks: Track[]) => {
-      this.trackList = tracks;
-    },
-      error => {
-        console.log(error);
-      });
   }
 
-  getAllTracks() {
-    return this.http.get<Track[]>(this.allTrackUrl).pipe();
+  public openDownloadModal(): void {
+    const modalRef = this.dialog.open(DownloadModalComponent)
+
+    modalRef.afterClosed().subscribe(link => {
+      console.log(link.value);
+    })
   }
 
 }

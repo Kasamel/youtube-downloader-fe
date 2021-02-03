@@ -1,7 +1,25 @@
-<ul class="list-group">
-    <div *ngFor="let track of trackList; let i = index">
-        <div> {{track.author}} - {{track.name}}</div>
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <app-track-list></app-track-list>
+        <div class="btn-toolbar justify-content-end">
+            <div class="btn-group mr-2">
+                <button type="button" (click)="openDownloadModal()" class="btn btn-primary custom-button-color custom-margin-for-button"
+                    data-toggle="modal" data-target="#downloadModal">Download new</button>
+            </div>
+        </div>
+        <ng-template #downloadModal let-modal>
+            <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">{{description}}</h4>
+                <button type="button" class="close" data-dismiss="modal">&times; </button>
+            </div>
+            <div class="modal-body">
+                <form action="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="link" placeholder="Enter link here">
+                    </div>
+                    <div (click)="openDownloadModal()" class="btn btn-default btn-success btn-block" type="button">Download</div>
+                </form>
+            </div>
+        </ng-template>
     </div>
-</ul>
-<button class="btn btn-primary">Download new</button>
-<button class="btn btn-info">Update list</button>
+</div>
